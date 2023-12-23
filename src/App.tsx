@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import Header from "../src/components/header/Header";
+import styles from "./index.module.scss";
+import { getCats } from "./request";
+import { useCats } from "./stateManager";
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    getCats.then((res) => console.log(res)).catch((err) => console.log(err));
+  }, []);
+  console.log(useCats((state: any) => state.cats));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.background}>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.list}></div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
