@@ -1,13 +1,26 @@
 import { create } from "zustand";
 
-export const useCats = create((set) => ({
-  cats: [
-    { name: "vasya", age: "fuck" },
-    { name: "god", age: "hole" },
-  ],
+type Store = {
+  cats: Array<{}>;
+  favoritesCats: Array<{}>;
+  addFavorites: (cat: Object) => void;
+};
+export const useStore = create<Store>()((set) => ({
+  cats: [],
   favoritesCats: [],
-  addFavorites: (cat: object) =>
-    set((state: any) => {
-      state.favoritesCats.push(cat);
+  addFavorites: (cat) =>
+    set((state) => {
+      return { favoritesCats: [...state.favoritesCats, cat] };
     }),
 }));
+// addFavorites: (cat:Object) => set((state) =>({favoritesCats: state.favoritesCats})),
+
+// type Store = {
+//   count: number
+//   inc: () => void
+// }
+
+// const useStore = create<Store>()((set) => ({
+//   count: 1,
+//   inc: () => set((state) => ({ count: state.count + 1 })),
+// }))

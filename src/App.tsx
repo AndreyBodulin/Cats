@@ -2,13 +2,24 @@ import React, { useEffect } from "react";
 import Header from "../src/components/header/Header";
 import styles from "./index.module.scss";
 import { getCats } from "./request";
-import { useCats } from "./stateManager";
+import { useStore } from "./stateManager";
+import { AxiosResponse } from "axios";
 
 const App = () => {
+  let cats = useStore((state) => {
+    state.cats;
+  });
   useEffect(() => {
-    getCats.then((res) => console.log(res)).catch((err) => console.log(err));
+    getCats
+      .then((res) => {
+        cats = res.data;
+        console.log(cats);
+        return cats;
+      })
+      .catch((err) => console.log(err));
   }, []);
-  console.log(useCats((state: any) => state.cats));
+  // console.log(cats);
+  // console.log(useStore((state) => state.cats));
 
   return (
     <div className={styles.background}>

@@ -7,5 +7,5 @@ const KEY_API =
 export const getCats = axios({
   url: `${API_CATS}`,
   method: "GET",
-  params: { limit: 100, api_key: `${KEY_API}` },
+  params: { limit: 10, api_key: `${KEY_API}` },
 });
