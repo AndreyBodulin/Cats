@@ -6,26 +6,32 @@ import { useStore } from "./stateManager";
 import { AxiosResponse } from "axios";
 
 const App = () => {
-  let cats = useStore((state) => {
-    state.cats;
-  });
+  const cats = useStore((state) => state.cats);
+
+  const addCats = useStore((state) => state.addCats);
+
   useEffect(() => {
-    getCats
+    getCats()
       .then((res) => {
-        cats = res.data;
-        console.log(cats);
-        return cats;
+        addCats(res);
       })
       .catch((err) => console.log(err));
   }, []);
-  // console.log(cats);
-  // console.log(useStore((state) => state.cats));
+  console.log(cats);
 
   return (
     <div className={styles.background}>
       <Header />
       <div className={styles.container}>
-        <div className={styles.list}></div>
+        <div className={styles.list}>
+          {cats.map((item) => {
+            return (
+              <div>
+                <img className={styles.picture} src={item.url}></img>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

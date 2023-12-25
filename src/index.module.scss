@@ -6,9 +6,16 @@
   margin-left: 90px;
 }
 
+.picture {
+  width: 150px;
+  height: 120px;
+  border-radius: 20px;
+}
+
 .list {
   width: 93%;
   height: 600px;
   border: solid 4px;
   border-radius: 15px;
+  overflow: scroll;
 }

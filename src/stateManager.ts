@@ -1,26 +1,20 @@
 import { create } from "zustand";
+import { Cat, Cats } from "./types";
 
 type Store = {
-  cats: Array<{}>;
-  favoritesCats: Array<{}>;
-  addFavorites: (cat: Object) => void;
+  cats: Cats;
+  favoritesCats: Cats;
+  addCats: (gettingCats: Cats) => void;
+  addFavorites: (cat: Cat) => void;
 };
 export const useStore = create<Store>()((set) => ({
   cats: [],
   favoritesCats: [],
-  addFavorites: (cat) =>
-    set((state) => {
-      return { favoritesCats: [...state.favoritesCats, cat] };
-    }),
+  addCats: (gettingCats: Cats) =>
+    set((state) => ({ ...state, cats: gettingCats })),
+  addFavorites: (cat: Cat) =>
+    set((state) => ({
+      ...state,
+      favoritesCats: [...state.favoritesCats, cat],
+    })),
 }));
-// addFavorites: (cat:Object) => set((state) =>({favoritesCats: state.favoritesCats})),
-
-// type Store = {
-//   count: number
-//   inc: () => void
-// }
-
-// const useStore = create<Store>()((set) => ({
-//   count: 1,
-//   inc: () => set((state) => ({ count: state.count + 1 })),
-// }))
