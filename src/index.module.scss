@@ -33,6 +33,8 @@
 }
 
 .element_list {
+  display: flex;
+  align-items: center;
   width: 100%;
   background: rgba(255, 255, 255, 0.35);
   margin-bottom: 10px;
@@ -45,4 +47,28 @@
   height: 35px;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+.favorite {
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: none !important;
+  margin-left: 15px;
+}
+.favorite_img {
+  width: 50px;
+  height: 45px;
+}
+
+.basket {
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: none !important;
+  margin-left: 15px;
+}
+.basket_img {
+  width: 50px;
+  height: 45px;
 }

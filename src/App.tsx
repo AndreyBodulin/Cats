@@ -3,8 +3,8 @@ import Header from "../src/components/header/Header";
 import styles from "./index.module.scss";
 import { getCats } from "./request";
 import { useStore } from "./stateManager";
-import { AxiosResponse } from "axios";
 import { Cat } from "./types";
+import { image } from "./assets/image";
 
 const App = () => {
   const cats = useStore((state) => state.cats);
@@ -37,17 +37,31 @@ const App = () => {
             <span>Сортировать</span>
           </div>
           {cats.map((item, index) => {
+            if (item.price == undefined) item.price = getRandomInt(1000, 4000);
             return (
               <div key={`-${index}`} className={styles.element_list}>
                 <img className={styles.picture} src={item.url}></img>
-                <span>Цена: {getRandomInt(1, 9999)}</span>
+                <span>Цена: {item.price}</span>
                 <button
+                  className={styles.favorite}
                   onClick={() => {
                     addFav(item);
                     console.log(item);
                   }}
                 >
-                  Добавить в избранное
+                  <img
+                    className={styles.favorite_img}
+                    src={image.favorite}
+                  ></img>
+                </button>
+                <button
+                  className={styles.basket}
+                  onClick={() => {
+                    addBas(item);
+                    console.log(item);
+                  }}
+                >
+                  <img className={styles.basket_img} src={image.basket}></img>
                 </button>
               </div>
             );
